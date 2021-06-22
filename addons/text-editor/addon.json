@@ -1,0 +1,11 @@
+{
+  "name": "Text editor",
+  "description": "none",
+  "tags": ["editor"],
+  "scripts": [
+    {
+      "url": "userscript.js",
+      "matches": ["projects"]
+    }
+  ]
+}
