@@ -9,3 +9,5 @@ say [hel\]o]
 `;
 
 lexer.load(code);
+
+console.log(lexer.tokens);

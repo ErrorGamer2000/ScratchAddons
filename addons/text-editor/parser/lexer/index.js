@@ -59,6 +59,18 @@ class Lexer {
             }
           }
 
+          if (current() === "@") {
+            let temp2 = "";
+
+            while (!/\s/.test(peek())) {
+              temp2 += next();
+            }
+
+            if (temp2 !== "cloud") {
+              temp.value += `@${temp2}`;
+            }
+          }
+
           if (current() === "]") {
             this.tokens.push(temp, token("bracket_right"));
             temp = undefined;
@@ -92,6 +104,18 @@ class Lexer {
             if (peek() !== "\n") {
               temp.value += next();
               continue;
+            }
+          }
+
+          if (current() === "@") {
+            let temp2 = "";
+
+            while (!/\s/.test(peek())) {
+              temp2 += next();
+            }
+
+            if (temp2 !== "cloud") {
+              temp.value += `@${temp2}`;
             }
           }
 
@@ -145,14 +169,6 @@ class Lexer {
 
   peek() {
     return this.tokens[this.idx + 1];
-  }
-
-  get eoi() {
-    return (
-      this.line === this.lines.length - 1 &&
-      this.lines[this.lines.length - 1][this.letter] ===
-        this.lines[this.lines.length - 1][this.lines[this.lines.length - 1].length - 1]
-    );
   }
 }
 
